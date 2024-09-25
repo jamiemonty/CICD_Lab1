@@ -21,4 +21,39 @@ public class RequestController {
     {
         return name + " " + age;
     }
+
+    @GetMapping("calculate")
+    public String calculate(@RequestParam int num1, @RequestParam int num2, @RequestParam String operation)
+    {
+        float sum = 0;
+        switch (operation){
+            case "add":
+                sum = num1 + num2;
+                break;
+
+            case "subtract":
+                sum = num1 - num2;
+                break;
+
+            case "multiply":
+                sum = num1 * num2;
+                break;
+
+            case "divide":
+                if(num2 == 0){
+                    return "You cannot divide by 0";
+                }
+                else {
+                    sum = num1 / num2;
+
+                }
+                break;
+
+            default:
+                break;
+        }
+
+        return Float.toString(sum);
+
+    }
 }
